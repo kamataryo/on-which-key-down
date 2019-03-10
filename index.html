@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>On Which Key Down?</title>
+  <style>
+    #keys {
+      font-size: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Press your key to identify.</h1>
+  <code id="keys"></code>
+</body>
+<script>
+  const codes = {}
+  const indicator = document.getElementById('keys')
+
+  const update = () => {
+    indicator.innerText = Object.keys(codes).join(', ')
+  }
+
+  document.addEventListener('keydown', (event) => {
+    const {
+      keyCode: code
+    } = event;
+
+    codes[code] = true
+    update()
+
+  })
+
+  document.addEventListener('keyup', (event) => {
+    const {
+      keyCode: code
+    } = event;
+    delete codes[code]
+    update()
+  })
+</script>
+
+</html>
